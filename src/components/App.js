@@ -30,6 +30,14 @@ class App extends Component {
             })
         }, 3000)
     }
+    createTweet = (tweet) => {
+        const tweetRef = firebase.database().ref('tweet')
+        tweetRef.push({
+            tweet: tweet,
+            up: 0,
+            down: 0
+        })
+    }
     render() {
         if (this.state.load) {
             return (
@@ -38,7 +46,7 @@ class App extends Component {
         }
         return (
             <div className="app">
-                <AddTweet />
+                <AddTweet createTweet={this.createTweet} />
                 <div className="tweet">
                     <Tweet />
                 </div>
