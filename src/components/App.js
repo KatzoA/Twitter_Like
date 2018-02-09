@@ -44,11 +44,18 @@ class App extends Component {
                 <Loading />
             )
         }
+
+        const tweets = Object.keys(this.state.tweets).map(key => {
+            return <Tweet
+                key={key}
+                details={this.state.tweets[key]}
+            />
+        })
         return (
             <div className="app">
                 <AddTweet createTweet={this.createTweet} />
-                <div className="tweet">
-                    <Tweet />
+                <div className="tweets">
+                    {tweets}
                 </div>
             </div>
         )
